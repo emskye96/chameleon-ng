@@ -31,6 +31,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)src\ImGui;$(SolutionDir)src\ImGui\examples\directx9_example;$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -51,8 +53,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Chameleon.hpp" />
+    <ClInclude Include="src\FindPattern.hpp" />
     <ClInclude Include="src\Hooks\FireEventClientSide.hpp" />
     <ClInclude Include="src\Hooks\FrameStageNotify.hpp" />
+    <ClInclude Include="src\Hooks\IDirect3DDevice9.hpp" />
+    <ClInclude Include="src\ImGui\examples\directx9_example\imgui_impl_dx9.h" />
+    <ClInclude Include="src\ImGui\imconfig.h" />
+    <ClInclude Include="src\ImGui\imgui.h" />
+    <ClInclude Include="src\ImGui\imgui_internal.h" />
+    <ClInclude Include="src\ImGui\stb_rect_pack.h" />
+    <ClInclude Include="src\ImGui\stb_textedit.h" />
+    <ClInclude Include="src\ImGui\stb_truetype.h" />
     <ClInclude Include="src\SDK\Classes\CBaseEntity.hpp" />
     <ClInclude Include="src\SDK\Classes\ClientClass.hpp" />
     <ClInclude Include="src\SDK\Classes\IClientEntity.hpp" />
@@ -72,6 +83,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Chameleon.cpp" />
+    <ClCompile Include="src\ImGui\examples\directx9_example\imgui_impl_dx9.cpp" />
+    <ClCompile Include="src\ImGui\imgui.cpp" />
+    <ClCompile Include="src\ImGui\imgui_demo.cpp" />
+    <ClCompile Include="src\ImGui\imgui_draw.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

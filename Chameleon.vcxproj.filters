@@ -37,6 +37,21 @@
     <Filter Include="Header Files\Source SDK\Definitions">
       <UniqueIdentifier>{920d401e-6a0b-4d3e-9e0d-52e8a500dbe0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Dependencies\ImGui">
+      <UniqueIdentifier>{af1392c2-c295-4551-8000-bc3cfe326ca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Dependencies">
+      <UniqueIdentifier>{159a6856-48bb-4b4d-9121-d28ad4b47b5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Dependencies\ImGui">
+      <UniqueIdentifier>{dc9d7e69-4849-493b-a4bd-3ca111d673cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Dependencies\ImGui\DirectX 9">
+      <UniqueIdentifier>{f1e03451-e547-49e6-8110-9bc123561ae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Dependencies\ImGui\DirectX 9">
+      <UniqueIdentifier>{4fb92957-45c1-42df-b15f-6b83fbecdef1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Chameleon.hpp">
@@ -96,10 +111,49 @@
     <ClInclude Include="src\VMTHook\vmthook.h">
       <Filter>Header Files\Dependencies\VMTHook</Filter>
     </ClInclude>
+    <ClInclude Include="src\Hooks\IDirect3DDevice9.hpp">
+      <Filter>Header Files\Function Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ImGui\examples\directx9_example\imgui_impl_dx9.h">
+      <Filter>Header Files\Dependencies\ImGui\DirectX 9</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ImGui\imgui.h">
+      <Filter>Header Files\Dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ImGui\stb_rect_pack.h">
+      <Filter>Header Files\Dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ImGui\stb_textedit.h">
+      <Filter>Header Files\Dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ImGui\stb_truetype.h">
+      <Filter>Header Files\Dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ImGui\imgui_internal.h">
+      <Filter>Header Files\Dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ImGui\imconfig.h">
+      <Filter>Header Files\Dependencies\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FindPattern.hpp">
+      <Filter>Header Files\Dependencies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Chameleon.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGui\examples\directx9_example\imgui_impl_dx9.cpp">
+      <Filter>Source Files\Dependencies\ImGui\DirectX 9</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGui\imgui.cpp">
+      <Filter>Source Files\Dependencies\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGui\imgui_draw.cpp">
+      <Filter>Source Files\Dependencies\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGui\imgui_demo.cpp">
+      <Filter>Source Files\Dependencies\ImGui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
 // Function signature of IBaseClientDLL::FrameStageNotify.
 typedef void (__thiscall *FrameStageNotify_t) (IBaseClientDLL*, ClientFrameStage_t);
 
-// Our replacement function that will get called at various points during frame rendering.
+// Replacement function that will get called at various points during frame rendering.
 void __fastcall hkFrameStageNotify(IBaseClientDLL* thisptr, void* edx, ClientFrameStage_t stage) {
 	// Get the original function and store it in a static variable for later usage.
 	static FrameStageNotify_t oFrameStageNotify = clientdll_hook->GetOriginalFunction<FrameStageNotify_t>(36);

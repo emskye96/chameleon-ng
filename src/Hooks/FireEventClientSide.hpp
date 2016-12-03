@@ -3,7 +3,7 @@
 // Function signature of IGameEventManager2::FireEventClientSide.
 typedef bool (__thiscall *FireEventClientSide_t) (IGameEventManager2*, IGameEvent*);
 
-// Our replacement function that will intercept game events before they are fired.
+// Replacement function that will intercept game events before they are fired.
 bool __fastcall hkFireEventClientSide(IGameEventManager2* thisptr, void* edx, IGameEvent* event) {
 	// Get the original function and store it in a static variable for later usage.
 	static FireEventClientSide_t oFireEventClientSide = gameevents_hook->GetOriginalFunction<FireEventClientSide_t>(9);

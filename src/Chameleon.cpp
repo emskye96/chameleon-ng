@@ -32,6 +32,7 @@ IGameEventManager2* gameevents = nullptr;
 
 std::unique_ptr<VMTHook> clientdll_hook;
 std::unique_ptr<VMTHook> gameevents_hook;
+std::unique_ptr<VMTHook> d3d9_hook;
 
 NetVars netvars;
 
@@ -50,6 +51,16 @@ void WINAPI Chameleon_Init(LPVOID dll_instance) {
 	// Hook 'FireEventClientSide' from IGameEventManager2.
 	gameevents_hook = std::make_unique<VMTHook>(gameevents);
 	gameevents_hook->HookFunction(hkFireEventClientSide, 9);
+
+	// Scan for the IDirect3DDevice9 pointer in 'shaderapidx9.dll'.
+	IDirect3DDevice9* d3d9_device = **reinterpret_cast<IDirect3DDevice9***>(
+		FindPattern("shaderapidx9.dll", PBYTE("\xA1\x00\x00\x00\x00\x50\x8B\x08\xFF\x51\x0C"), "x????xxxxxx") + 1
+	);
+
+	// Hook 'EndScene' and 'Reset' for our custom rendering.
+	d3d9_hook = std::make_unique<VMTHook>(d3d9_device);
+	d3d9_hook->HookFunction(hkReset, 16);
+	d3d9_hook->HookFunction(hkEndScene, 42);
 }
 
 bool __stdcall DllMain(HINSTANCE dll_instance, DWORD call_reason, LPVOID reserved) {
