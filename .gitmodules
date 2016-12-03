@@ -1,3 +1,6 @@
 [submodule "src/VMTHook"]
 	path = src/VMTHook
 	url = https://github.com/aixxe/vmthook.git
+[submodule "src/ImGui"]
+	path = src/ImGui
+	url = https://github.com/ocornut/imgui.git
