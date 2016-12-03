@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Source SDK">
+      <UniqueIdentifier>{9576f02e-39b3-4bea-8f98-f6de0be3db7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\Interfaces">
+      <UniqueIdentifier>{59249127-c537-4214-83f7-3a9c46042ffe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\Utilities">
+      <UniqueIdentifier>{c1d4b130-89f3-4dd2-bc9b-3765d5330627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\Classes">
+      <UniqueIdentifier>{94a0cf72-0fe3-465e-b084-916309fce7a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Function Hooks">
+      <UniqueIdentifier>{a4b4572e-1859-4a87-8a6e-730fe00fc8db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Dependencies">
+      <UniqueIdentifier>{f0cff58a-ac24-4285-91fc-cc6d6e1bf119}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Dependencies\VMTHook">
+      <UniqueIdentifier>{4788008c-4fc9-4a8b-8090-665b36b8995b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\Definitions">
+      <UniqueIdentifier>{920d401e-6a0b-4d3e-9e0d-52e8a500dbe0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Chameleon.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\SDK.hpp">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Interfaces\IBaseClientDLL.hpp">
+      <Filter>Header Files\Source SDK\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Interfaces\IClientEntityList.hpp">
+      <Filter>Header Files\Source SDK\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Interfaces\IGameEventManager2.hpp">
+      <Filter>Header Files\Source SDK\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Interfaces\IVEngineClient.hpp">
+      <Filter>Header Files\Source SDK\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Interfaces\IVModelInfoClient.hpp">
+      <Filter>Header Files\Source SDK\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Classes\IGameEvent.hpp">
+      <Filter>Header Files\Source SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Classes\IClientEntity.hpp">
+      <Filter>Header Files\Source SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hooks\FrameStageNotify.hpp">
+      <Filter>Header Files\Function Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hooks\FireEventClientSide.hpp">
+      <Filter>Header Files\Function Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Utilities\Interface.hpp">
+      <Filter>Header Files\Source SDK\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Utilities\Virtuals.hpp">
+      <Filter>Header Files\Source SDK\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Classes\CBaseEntity.hpp">
+      <Filter>Header Files\Source SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Classes\ClientClass.hpp">
+      <Filter>Header Files\Source SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Definitions\Items.hpp">
+      <Filter>Header Files\Source SDK\Definitions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Utilities\NetVars.hpp">
+      <Filter>Header Files\Source SDK\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SDK\Classes\DataTable.hpp">
+      <Filter>Header Files\Source SDK\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\VMTHook\vmthook.h">
+      <Filter>Header Files\Dependencies\VMTHook</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Chameleon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

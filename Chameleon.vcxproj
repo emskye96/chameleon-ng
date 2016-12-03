@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2FB4281E-EA4D-47D6-AC36-925DBB796B5E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Chameleon</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CHAMELEON_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Chameleon.hpp" />
+    <ClInclude Include="src\Hooks\FireEventClientSide.hpp" />
+    <ClInclude Include="src\Hooks\FrameStageNotify.hpp" />
+    <ClInclude Include="src\SDK\Classes\CBaseEntity.hpp" />
+    <ClInclude Include="src\SDK\Classes\ClientClass.hpp" />
+    <ClInclude Include="src\SDK\Classes\IClientEntity.hpp" />
+    <ClInclude Include="src\SDK\Classes\IGameEvent.hpp" />
+    <ClInclude Include="src\SDK\Classes\DataTable.hpp" />
+    <ClInclude Include="src\SDK\Definitions\Items.hpp" />
+    <ClInclude Include="src\SDK\Interfaces\IBaseClientDLL.hpp" />
+    <ClInclude Include="src\SDK\Interfaces\IClientEntityList.hpp" />
+    <ClInclude Include="src\SDK\Interfaces\IGameEventManager2.hpp" />
+    <ClInclude Include="src\SDK\Interfaces\IVEngineClient.hpp" />
+    <ClInclude Include="src\SDK\Interfaces\IVModelInfoClient.hpp" />
+    <ClInclude Include="src\SDK\SDK.hpp" />
+    <ClInclude Include="src\SDK\Utilities\Interface.hpp" />
+    <ClInclude Include="src\SDK\Utilities\NetVars.hpp" />
+    <ClInclude Include="src\SDK\Utilities\Virtuals.hpp" />
+    <ClInclude Include="src\VMTHook\vmthook.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Chameleon.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
