@@ -24,7 +24,7 @@ void __fastcall hkFrameStageNotify(IBaseClientDLL* thisptr, void* edx, ClientFra
 
 		CBaseHandle* weapons = localplayer->GetWeapons();
 
-		for (unsigned int i = 0; i < weapons[i]; i++) {
+		for (size_t i = 0; i < weapons[i]; i++) {
 			C_BaseAttributableItem* weapon = reinterpret_cast<C_BaseAttributableItem*>(entitylist->GetClientEntityFromHandle(weapons[i]));
 			
 			if (!weapon)

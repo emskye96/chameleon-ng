@@ -1,6 +1,6 @@
 #pragma once
 
-enum ItemDefinitionIndex: int {
+enum ItemDefinitionIndex: size_t {
 	WEAPON_DEAGLE = 1,
 	WEAPON_ELITE = 2,
 	WEAPON_FIVESEVEN = 3,

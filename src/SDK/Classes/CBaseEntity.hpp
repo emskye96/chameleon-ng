@@ -38,21 +38,21 @@ class C_BaseCombatWeapon: public C_BaseEntity {
 		}
 };
 
-class C_BaseAttributableItem: public C_BaseCombatWeapon{
+class C_BaseAttributableItem: public C_BaseCombatWeapon {
 	public:
-		int* GetAccountID() {
+		unsigned int* GetAccountID() {
 			static uintptr_t m_iAccountID = netvars.GetOffset("CBaseAttributableItem", "m_iAccountID");
-			return reinterpret_cast<int*>(uintptr_t(this) + m_iAccountID);
+			return reinterpret_cast<unsigned int*>(uintptr_t(this) + m_iAccountID);
 		}
 
-		int* GetItemDefinitionIndex() {
+		unsigned int* GetItemDefinitionIndex() {
 			static uintptr_t m_iItemDefinitionIndex = netvars.GetOffset("CBaseAttributableItem", "m_iItemDefinitionIndex");
-			return reinterpret_cast<int*>(uintptr_t(this) + m_iItemDefinitionIndex);
+			return reinterpret_cast<unsigned int*>(uintptr_t(this) + m_iItemDefinitionIndex);
 		}
 
-		int* GetItemIDHigh() {
+		unsigned int* GetItemIDHigh() {
 			static uintptr_t m_iItemIDHigh = netvars.GetOffset("CBaseAttributableItem", "m_iItemIDHigh");
-			return reinterpret_cast<int*>(uintptr_t(this) + m_iItemIDHigh);
+			return reinterpret_cast<unsigned int*>(uintptr_t(this) + m_iItemIDHigh);
 		}
 
 		int* GetEntityQuality() {
@@ -65,14 +65,14 @@ class C_BaseAttributableItem: public C_BaseCombatWeapon{
 			return reinterpret_cast<char*>(uintptr_t(this) + m_szCustomName);
 		}
 
-		int* GetFallbackPaintKit() {
+		unsigned int* GetFallbackPaintKit() {
 			static uintptr_t m_nFallbackPaintKit = netvars.GetOffset("CBaseAttributableItem", "m_nFallbackPaintKit");
-			return reinterpret_cast<int*>(uintptr_t(this) + m_nFallbackPaintKit);
+			return reinterpret_cast<unsigned int*>(uintptr_t(this) + m_nFallbackPaintKit);
 		}
 
-		int* GetFallbackSeed() {
+		unsigned int* GetFallbackSeed() {
 			static uintptr_t m_nFallbackSeed = netvars.GetOffset("CBaseAttributableItem", "m_nFallbackSeed");
-			return reinterpret_cast<int*>(uintptr_t(this) + m_nFallbackSeed);
+			return reinterpret_cast<unsigned int*>(uintptr_t(this) + m_nFallbackSeed);
 		}
 
 		float* GetFallbackWear() {
