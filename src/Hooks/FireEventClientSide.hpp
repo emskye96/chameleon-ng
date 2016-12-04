@@ -15,13 +15,10 @@ bool __fastcall hkFireEventClientSide(IGameEventManager2* thisptr, void* edx, IG
 		
 		if (engine->GetPlayerForUserID(attacker_id) == engine->GetLocalPlayer()) {
 			// Check if we have an override for the weapon we used.
-			const char* weapon = event->GetString("weapon");
-
-			// Override the weapon icon that will be displayed in the kill feed.
-			if (!strcmp(weapon, "knife_default_ct")) {
-				event->SetString("weapon", "knife_karambit");
-			} else if (!strcmp(weapon, "knife_t")) {
-				event->SetString("weapon", "knife_m9_bayonet");
+			std::string weapon = event->GetString("weapon");
+			
+			if (config.HasKillIconOverride(weapon)) {
+				event->SetString("weapon", config.GetKillIconOverride(weapon).c_str());
 			}
 		}
 	}

@@ -54,10 +54,20 @@ void __fastcall hkFrameStageNotify(IBaseClientDLL* thisptr, void* edx, ClientFra
 					*weapon->GetFallbackPaintKit() = weapon_config.fallback_paint_kit;
 				
 				if (weapon_config.item_definition_index != -1) {
-					if (ItemDefinitionIndex.find(weapon_config.item_definition_index) != ItemDefinitionIndex.end())
+					if (ItemDefinitionIndex.find(weapon_config.item_definition_index) != ItemDefinitionIndex.end()) {
 						*weapon->GetModelIndex() = modelinfo->GetModelIndex(ItemDefinitionIndex.at(weapon_config.item_definition_index).model);
 
-					*item_definition_index = weapon_config.item_definition_index;
+						// Make sure the original item is in our definition list too.
+						if (ItemDefinitionIndex.find(*item_definition_index) != ItemDefinitionIndex.end()) {
+							const Item_t& original_item = ItemDefinitionIndex.at(*item_definition_index);
+							const Item_t& replacement_item = ItemDefinitionIndex.at(weapon_config.item_definition_index);
+
+							if (original_item.killicon && replacement_item.killicon)
+								config.SetKillIconOverride(original_item.killicon, replacement_item.killicon);
+
+							*item_definition_index = weapon_config.item_definition_index;
+						}
+					}
 				}
 
 				*weapon->GetAccountID() = localplayer_info.xuid_low;

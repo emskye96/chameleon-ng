@@ -32,3 +32,21 @@ EconomyItem_t& Configuration::GetWeaponConfiguration(size_t item_definition_inde
 
 	return item_config.at(item_definition_index);
 }
+
+// Checks if an override exists for this kill icon.
+const bool Configuration::HasKillIconOverride(std::string weapon) {
+	return this->killicon_config.find(weapon) != this->killicon_config.end();
+};
+
+// Get the override assigned to a specified kill icon.
+const std::string Configuration::GetKillIconOverride(std::string original_weapon) {
+	if (!this->HasKillIconOverride(original_weapon))
+		return original_weapon;
+
+	return this->killicon_config.at(original_weapon);
+}
+
+// Use this to replace a kill icon with another, mainly useful for when you're using a custom knife.
+void Configuration::SetKillIconOverride(std::string original_weapon, std::string override_weapon) {
+	this->killicon_config[original_weapon] = override_weapon;
+}
