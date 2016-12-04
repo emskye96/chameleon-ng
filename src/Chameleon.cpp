@@ -36,6 +36,7 @@ std::unique_ptr<VMTHook> d3d9_hook;
 
 NetVars netvars;
 Renderer renderer;
+Configuration config;
 
 void WINAPI Chameleon_Init(LPVOID dll_instance) {
 	// Get important class pointers from game DLLs using interface versions.
@@ -60,6 +61,9 @@ void WINAPI Chameleon_Init(LPVOID dll_instance) {
 
 	// Initialize the renderer.
 	renderer.Initialize(FindWindowA("Valve001", NULL), d3d9_device);
+
+	// Initialise the configuration system.
+	config.SetBaseFolder(static_cast<HMODULE>(dll_instance));
 
 	// Hook 'EndScene' and 'Reset' for our custom rendering.
 	d3d9_hook = std::make_unique<VMTHook>(d3d9_device);

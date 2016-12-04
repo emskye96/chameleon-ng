@@ -53,6 +53,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Chameleon.hpp" />
+    <ClInclude Include="src\Configuration.hpp" />
     <ClInclude Include="src\FindPattern.hpp" />
     <ClInclude Include="src\Hooks\FireEventClientSide.hpp" />
     <ClInclude Include="src\Hooks\FrameStageNotify.hpp" />
@@ -84,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Chameleon.cpp" />
+    <ClCompile Include="src\Configuration.cpp" />
     <ClCompile Include="src\ImGui\examples\directx9_example\imgui_impl_dx9.cpp" />
     <ClCompile Include="src\ImGui\imgui.cpp" />
     <ClCompile Include="src\ImGui\imgui_draw.cpp" />

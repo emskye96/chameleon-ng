@@ -5,6 +5,7 @@
 
 #include "FindPattern.hpp"
 
+#include "Configuration.hpp"
 #include "Renderer.hpp"
 
 extern std::unique_ptr<VMTHook> gameevents_hook;

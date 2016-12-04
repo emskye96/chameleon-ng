@@ -141,6 +141,9 @@
     <ClInclude Include="src\Renderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Configuration.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Chameleon.cpp">
@@ -156,6 +159,9 @@
       <Filter>Source Files\Dependencies\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Configuration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
