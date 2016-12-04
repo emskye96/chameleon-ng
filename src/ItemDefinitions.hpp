@@ -3,10 +3,7 @@
 #include <unordered_map>
 
 struct Item_t {
-	bool is_valid = false;
-
 	Item_t(const char* display_name, const char* entity_name, const char* model) {
-		this->is_valid = true;
 		this->display_name = display_name;
 		this->entity_name = entity_name;
 		this->model = model;

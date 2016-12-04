@@ -34,6 +34,7 @@ inline const int RandomSequence(int low, int high) {
 	return (rand() % (high - low + 1) + low);
 }
 
+// Replacement function that will be called when the view model animation sequence changes.
 void __cdecl hkSequenceProxyFn(const CRecvProxyData* proxy_data_const, void* entity, void* output) {
 	// Get the original proxy function used by the game and store it in a static variable for later usage.
 	static RecvVarProxyFn oSequenceProxyFn = sequence_hook->GetOriginalFunction();

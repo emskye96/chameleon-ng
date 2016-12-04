@@ -151,7 +151,7 @@
       <Filter>Header Files\Hooks\NetVar Proxies</Filter>
     </ClInclude>
     <ClInclude Include="src\RecvProxyHook.hpp">
-      <Filter>Header Files\Dependencies</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

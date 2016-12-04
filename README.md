@@ -7,3 +7,7 @@ chameleon-ng is an extended version of the [Chameleon](https://github.com/aixxe/
 * Network variable offsets are retrieved at runtime.
 * Ability to override weapon kill feed icons.
 * Full in-game graphical configuration.
+
+## Additional requirements
+
+* [Microsoft DirectX 9 SDK](https://www.microsoft.com/en-gb/download/details.aspx?id=6812)
