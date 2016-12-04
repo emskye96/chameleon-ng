@@ -2,8 +2,6 @@
 
 #include <windows.h>
 
-#include "Definitions/Items.hpp"
-
 #include "Utilities/Interface.hpp"
 #include "Utilities/Virtuals.hpp"
 

@@ -5,6 +5,7 @@
 
 #include "FindPattern.hpp"
 
+#include "ItemDefinitions.hpp"
 #include "Configuration.hpp"
 #include "Renderer.hpp"
 

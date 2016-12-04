@@ -34,9 +34,6 @@
     <Filter Include="Header Files\Dependencies\VMTHook">
       <UniqueIdentifier>{4788008c-4fc9-4a8b-8090-665b36b8995b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Source SDK\Definitions">
-      <UniqueIdentifier>{920d401e-6a0b-4d3e-9e0d-52e8a500dbe0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Dependencies\ImGui">
       <UniqueIdentifier>{af1392c2-c295-4551-8000-bc3cfe326ca0}</UniqueIdentifier>
     </Filter>
@@ -99,9 +96,6 @@
     <ClInclude Include="src\SDK\Classes\ClientClass.hpp">
       <Filter>Header Files\Source SDK\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="src\SDK\Definitions\Items.hpp">
-      <Filter>Header Files\Source SDK\Definitions</Filter>
-    </ClInclude>
     <ClInclude Include="src\SDK\Utilities\NetVars.hpp">
       <Filter>Header Files\Source SDK\Utilities</Filter>
     </ClInclude>
@@ -142,6 +136,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Configuration.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ItemDefinitions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

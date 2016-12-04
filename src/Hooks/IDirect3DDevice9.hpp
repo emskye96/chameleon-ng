@@ -42,18 +42,34 @@ HRESULT __stdcall hkEndScene(IDirect3DDevice9* thisptr) {
 		return oEndScene(thisptr);
 
 	ImGui_ImplDX9_NewFrame();
-	
-	// Example editor for default CT knife. (TODO: move to GUI file?)
-	EconomyItem_t& knife = config.GetWeaponConfiguration(WEAPON_KNIFE);
-	knife.is_valid = true;
 
-	ImGui::InputText("Name Tag", knife.custom_name, 32); 
-	ImGui::InputInt("Item Index", &knife.item_definition_index);
-	ImGui::InputInt("Paint Kit", &knife.fallback_paint_kit);
-	ImGui::InputInt("Seed", &knife.fallback_seed);
-	ImGui::InputInt("Quality", &knife.entity_quality);
-	ImGui::InputInt("StatTrak", &knife.fallback_stattrak);
-	ImGui::InputFloat("Wear", &knife.fallback_wear);
+	// Loop through the game item list.
+	for (const auto& it: ItemDefinitionIndex) {
+		// Get the configuration for the current item.
+		EconomyItem_t& weapon = config.GetWeaponConfiguration(it.first);
+		
+		// Ensure that our settings will be used.
+		if (!weapon.is_valid)
+			weapon.is_valid = true;
+
+		// Create a new node in the tree for this item.
+		if (ImGui::TreeNode(it.second.display_name)) {
+			// Add input forms to edit values for this item.
+			ImGui::InputInt(std::string("Item Index##").append(it.second.entity_name).c_str(), &weapon.item_definition_index); 
+			ImGui::InputInt(std::string("Paint Kit##").append(it.second.entity_name).c_str(), &weapon.fallback_paint_kit);
+			ImGui::InputInt(std::string("Seed##").append(it.second.entity_name).c_str(), &weapon.fallback_seed);
+			ImGui::InputInt(std::string("Quality##").append(it.second.entity_name).c_str(), &weapon.entity_quality);
+			ImGui::InputInt(std::string("StatTrak##").append(it.second.entity_name).c_str(), &weapon.fallback_stattrak);
+			ImGui::InputFloat(std::string("Wear##").append(it.second.entity_name).c_str(), &weapon.fallback_wear);
+			ImGui::InputText(std::string("Name Tag##").append(it.second.entity_name).c_str(), weapon.custom_name, 32);
+
+			// Add a placeholer 'Apply' button that calls 'cl_fullupdate'.
+			if (ImGui::Button("Apply", ImVec2(ImGui::GetContentRegionAvail().x, 20)))
+				engine->ClientCmd_Unrestricted("cl_fullupdate");
+			
+			ImGui::TreePop();
+		}
+	}
 
 	ImGui::Render();
 

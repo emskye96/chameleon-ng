@@ -54,6 +54,7 @@
   <ItemGroup>
     <ClInclude Include="src\Chameleon.hpp" />
     <ClInclude Include="src\Configuration.hpp" />
+    <ClInclude Include="src\ItemDefinitions.hpp" />
     <ClInclude Include="src\FindPattern.hpp" />
     <ClInclude Include="src\Hooks\FireEventClientSide.hpp" />
     <ClInclude Include="src\Hooks\FrameStageNotify.hpp" />
@@ -71,7 +72,6 @@
     <ClInclude Include="src\SDK\Classes\IClientEntity.hpp" />
     <ClInclude Include="src\SDK\Classes\IGameEvent.hpp" />
     <ClInclude Include="src\SDK\Classes\DataTable.hpp" />
-    <ClInclude Include="src\SDK\Definitions\Items.hpp" />
     <ClInclude Include="src\SDK\Interfaces\IBaseClientDLL.hpp" />
     <ClInclude Include="src\SDK\Interfaces\IClientEntityList.hpp" />
     <ClInclude Include="src\SDK\Interfaces\IGameEventManager2.hpp" />

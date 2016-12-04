@@ -3,34 +3,6 @@
 // Function signature of IBaseClientDLL::FrameStageNotify.
 typedef void (__thiscall *FrameStageNotify_t) (IBaseClientDLL*, ClientFrameStage_t);
 
-// Placeholder function to get the model filename by item index.
-inline const char* GetModelByItemIndex(int id) {
-	switch (id) {
-		case WEAPON_KNIFE_GUT:
-			return "models/weapons/v_knife_gut.mdl";
-		case WEAPON_KNIFE_FLIP:
-			return "models/weapons/v_knife_flip.mdl";
-		case WEAPON_KNIFE_BAYONET:
-			return "models/weapons/v_knife_bayonet.mdl";
-		case WEAPON_KNIFE_M9_BAYONET:
-			return "models/weapons/v_knife_m9_bay.mdl";
-		case WEAPON_KNIFE_KARAMBIT:
-			return "models/weapons/v_knife_karam.mdl";
-		case WEAPON_KNIFE_TACTICAL:
-			return "models/weapons/v_knife_tactical.mdl";
-		case WEAPON_KNIFE_BUTTERFLY:
-			return "models/weapons/v_knife_butterfly.mdl";
-		case WEAPON_KNIFE_SURVIVAL_BOWIE:
-			return "models/weapons/v_knife_survival_bowie.mdl";
-		case WEAPON_KNIFE_FALCHION:
-			return "models/weapons/v_knife_falchion_advanced.mdl";
-		case WEAPON_KNIFE_PUSH:
-			return "models/weapons/v_knife_push.mdl";
-		default:
-			return NULL;
-	}
-}
-
 // Replacement function that will get called at various points during frame rendering.
 void __fastcall hkFrameStageNotify(IBaseClientDLL* thisptr, void* edx, ClientFrameStage_t stage) {
 	// Get the original function and store it in a static variable for later usage.
@@ -81,34 +53,27 @@ void __fastcall hkFrameStageNotify(IBaseClientDLL* thisptr, void* edx, ClientFra
 				if (weapon_config.fallback_paint_kit != -1)
 					*weapon->GetFallbackPaintKit() = weapon_config.fallback_paint_kit;
 				
-				if (weapon_config.item_definition_index != -1)
-					*item_definition_index = weapon_config.item_definition_index;
+				if (weapon_config.item_definition_index != -1) {
+					if (ItemDefinitionIndex.find(weapon_config.item_definition_index) != ItemDefinitionIndex.end())
+						*weapon->GetModelIndex() = modelinfo->GetModelIndex(ItemDefinitionIndex.at(weapon_config.item_definition_index).model);
 
-				const char* real_model = GetModelByItemIndex(weapon_config.item_definition_index);
-				
-				if (real_model)
-					*weapon->GetModelIndex() = modelinfo->GetModelIndex(real_model);
+					*item_definition_index = weapon_config.item_definition_index;
+				}
 
 				*weapon->GetAccountID() = localplayer_info.xuid_low;
 				*weapon->GetItemIDHigh() = -1;
 			}
 		}
 
-		C_BaseViewModel* viewmodel = reinterpret_cast<C_BaseViewModel*>(entitylist->GetClientEntityFromHandle(localplayer->GetViewModel()));
-
-		if (!viewmodel)
-			break;
-
-		C_BaseAttributableItem* active_weapon = reinterpret_cast<C_BaseAttributableItem*>(entitylist->GetClientEntityFromHandle(viewmodel->GetWeapon()));
-
-		if (!active_weapon)
-			break;
-
-		// Set appropriate viewmodel index based on item definition index.
-		const char* real_model = GetModelByItemIndex(*active_weapon->GetItemDefinitionIndex());
-
-		if (real_model)
-			*viewmodel->GetModelIndex() = modelinfo->GetModelIndex(real_model);
+		// TODO: Really need to clean this up.
+		if (C_BaseViewModel* viewmodel = reinterpret_cast<C_BaseViewModel*>(entitylist->GetClientEntityFromHandle(localplayer->GetViewModel()))) {
+			if (C_BaseAttributableItem* active_weapon = reinterpret_cast<C_BaseAttributableItem*>(entitylist->GetClientEntityFromHandle(viewmodel->GetWeapon()))) {
+				// Set appropriate viewmodel index based on item definition index.
+				if (ItemDefinitionIndex.find(*active_weapon->GetItemDefinitionIndex()) != ItemDefinitionIndex.end()) {
+					*viewmodel->GetModelIndex() = modelinfo->GetModelIndex(ItemDefinitionIndex.at(*active_weapon->GetItemDefinitionIndex()).model);
+				}
+			}
+		}		
 
 		break;
 	}
