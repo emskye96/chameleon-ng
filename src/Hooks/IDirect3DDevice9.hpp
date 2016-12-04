@@ -34,11 +34,32 @@ HRESULT __stdcall hkEndScene(IDirect3DDevice9* thisptr) {
 	// Get the original function and store it in a static variable for later usage.
 	static EndScene_t oEndScene = d3d9_hook->GetOriginalFunction<EndScene_t>(42);
 
-	// TODO: Disable 'cl_mouseenable' when GUI is active.
-	ImGui::GetIO().MouseDrawCursor = renderer.IsActive();
+	// Determines whether the mouse is enabled in-game.
+	static bool mouse_enabled = false;
+
+	// Check whether the GUI is currently open.
+	bool is_renderer_active = renderer.IsActive();
+
+	// TODO: Directly set the value using the ConVar pointer.
+	if (is_renderer_active) {
+		if (mouse_enabled) {
+			// Disable the mouse while the menu is open.
+			engine->ClientCmd_Unrestricted("cl_mouseenable 0");
+			mouse_enabled = false;
+		}
+	} else {
+		if (!mouse_enabled) {
+			// Re-enable the mouse while the menu is closed.
+			engine->ClientCmd_Unrestricted("cl_mouseenable 1");
+			mouse_enabled = true;
+		}
+	}
 	
-	// Call the original when the GUI isn't ready or is inactive.
-	if (!renderer.IsReady() || !renderer.IsActive())
+	// Enable the in-built cursor when the GUI is active.
+	ImGui::GetIO().MouseDrawCursor = is_renderer_active;
+	
+	// Call the original while the GUI is inactive.
+	if (!is_renderer_active)
 		return oEndScene(thisptr);
 
 	ImGui_ImplDX9_NewFrame();
