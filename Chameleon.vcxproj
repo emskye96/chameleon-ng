@@ -54,6 +54,7 @@
   <ItemGroup>
     <ClInclude Include="src\Chameleon.hpp" />
     <ClInclude Include="src\Configuration.hpp" />
+    <ClInclude Include="src\Hooks\Sequence.hpp" />
     <ClInclude Include="src\ItemDefinitions.hpp" />
     <ClInclude Include="src\FindPattern.hpp" />
     <ClInclude Include="src\Hooks\FireEventClientSide.hpp" />
@@ -66,6 +67,7 @@
     <ClInclude Include="src\ImGui\stb_rect_pack.h" />
     <ClInclude Include="src\ImGui\stb_textedit.h" />
     <ClInclude Include="src\ImGui\stb_truetype.h" />
+    <ClInclude Include="src\RecvProxyHook.hpp" />
     <ClInclude Include="src\Renderer.hpp" />
     <ClInclude Include="src\SDK\Classes\CBaseEntity.hpp" />
     <ClInclude Include="src\SDK\Classes\ClientClass.hpp" />

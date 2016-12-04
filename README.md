@@ -6,3 +6,4 @@ chameleon-ng is an extended version of the [Chameleon](https://github.com/aixxe/
 * Includes primitive fix for special knife animations.
 * Network variable offsets are retrieved at runtime.
 * Ability to override weapon kill feed icons.
+* Full in-game graphical configuration.

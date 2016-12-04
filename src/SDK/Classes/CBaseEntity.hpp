@@ -88,6 +88,11 @@ class C_BaseAttributableItem: public C_BaseCombatWeapon {
 
 class C_BaseViewModel: public C_BaseEntity {
 	public:
+		CBaseHandle GetOwner() {
+			static uintptr_t m_hOwner = netvars.GetOffset("CBaseViewModel", "m_hOwner");
+			return *reinterpret_cast<CBaseHandle*>(uintptr_t(this) + m_hOwner);
+		}
+
 		int GetWeapon() {
 			static uintptr_t m_hWeapon = netvars.GetOffset("CBaseViewModel", "m_hWeapon");
 			return *reinterpret_cast<int*>(uintptr_t(this) + m_hWeapon);

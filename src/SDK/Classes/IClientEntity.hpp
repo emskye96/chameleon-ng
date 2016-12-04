@@ -1,5 +1,7 @@
 #pragma once
 
+#define INVALID_EHANDLE_INDEX 0xFFFFFFFF
+
 typedef unsigned long CBaseHandle;
 
 class IHandleEntity {
@@ -27,11 +29,11 @@ class IClientNetworkable {
 		virtual ~IClientNetworkable() {};
 
 		inline ClientClass* GetClientClass() {
-			return GetVirtualFunction<ClientClass*(__thiscall *)(void*)>(this, 2)(this);
+			return GetVirtualFunction<ClientClass*(__thiscall *)(IClientNetworkable*)>(this, 2)(this);
 		}
 		
-		inline int GetIndex() {
-			return GetVirtualFunction<int(__thiscall *)(void*)>(this, 9)(this);
+		inline const int GetIndex() {
+			return GetVirtualFunction<int(__thiscall *)(IClientNetworkable*)>(this, 9)(this);
 		}
 };
 

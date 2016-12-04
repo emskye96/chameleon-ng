@@ -25,9 +25,6 @@
     <Filter Include="Header Files\Source SDK\Classes">
       <UniqueIdentifier>{94a0cf72-0fe3-465e-b084-916309fce7a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Function Hooks">
-      <UniqueIdentifier>{a4b4572e-1859-4a87-8a6e-730fe00fc8db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Dependencies">
       <UniqueIdentifier>{f0cff58a-ac24-4285-91fc-cc6d6e1bf119}</UniqueIdentifier>
     </Filter>
@@ -48,6 +45,15 @@
     </Filter>
     <Filter Include="Header Files\Dependencies\ImGui\DirectX 9">
       <UniqueIdentifier>{4fb92957-45c1-42df-b15f-6b83fbecdef1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hooks">
+      <UniqueIdentifier>{ea071f89-e615-441d-b9e1-32fe46146c3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hooks\Virtual Functions">
+      <UniqueIdentifier>{a4b4572e-1859-4a87-8a6e-730fe00fc8db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hooks\NetVar Proxies">
+      <UniqueIdentifier>{51780293-efac-4ea8-8886-a2d8c7d91d0b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -79,10 +85,10 @@
       <Filter>Header Files\Source SDK\Classes</Filter>
     </ClInclude>
     <ClInclude Include="src\Hooks\FrameStageNotify.hpp">
-      <Filter>Header Files\Function Hooks</Filter>
+      <Filter>Header Files\Hooks\Virtual Functions</Filter>
     </ClInclude>
     <ClInclude Include="src\Hooks\FireEventClientSide.hpp">
-      <Filter>Header Files\Function Hooks</Filter>
+      <Filter>Header Files\Hooks\Virtual Functions</Filter>
     </ClInclude>
     <ClInclude Include="src\SDK\Utilities\Interface.hpp">
       <Filter>Header Files\Source SDK\Utilities</Filter>
@@ -106,7 +112,7 @@
       <Filter>Header Files\Dependencies\VMTHook</Filter>
     </ClInclude>
     <ClInclude Include="src\Hooks\IDirect3DDevice9.hpp">
-      <Filter>Header Files\Function Hooks</Filter>
+      <Filter>Header Files\Hooks\Virtual Functions</Filter>
     </ClInclude>
     <ClInclude Include="src\ImGui\examples\directx9_example\imgui_impl_dx9.h">
       <Filter>Header Files\Dependencies\ImGui\DirectX 9</Filter>
@@ -140,6 +146,12 @@
     </ClInclude>
     <ClInclude Include="src\ItemDefinitions.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hooks\Sequence.hpp">
+      <Filter>Header Files\Hooks\NetVar Proxies</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RecvProxyHook.hpp">
+      <Filter>Header Files\Dependencies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

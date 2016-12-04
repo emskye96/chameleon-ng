@@ -34,6 +34,8 @@ std::unique_ptr<VMTHook> clientdll_hook;
 std::unique_ptr<VMTHook> gameevents_hook;
 std::unique_ptr<VMTHook> d3d9_hook;
 
+std::unique_ptr<RecvPropHook> sequence_hook;
+
 NetVars netvars;
 Renderer renderer;
 Configuration config;
@@ -69,6 +71,14 @@ void WINAPI Chameleon_Init(LPVOID dll_instance) {
 	d3d9_hook = std::make_unique<VMTHook>(d3d9_device);
 	d3d9_hook->HookFunction(hkReset, 16);
 	d3d9_hook->HookFunction(hkEndScene, 42);
+
+	// Find the animation sequence property from 'CBaseViewModel' for our NetVar proxy.
+	RecvProp* sequence_property = nullptr;
+	netvars.GetOffset("CBaseViewModel", "m_nSequence", &sequence_property);
+
+	// Hook the 'm_nSequence' proxy function to fix some knife animations.
+	sequence_hook = std::make_unique<RecvPropHook>(sequence_property);
+	sequence_hook->SetProxyFunction(hkSequenceProxyFn);
 }
 
 bool __stdcall DllMain(HINSTANCE dll_instance, DWORD call_reason, LPVOID reserved) {
