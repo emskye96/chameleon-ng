@@ -67,7 +67,7 @@ const std::unordered_map<size_t, Item_t> ItemDefinitionIndex = {
 	{507, {"Karambit", "WEAPON_KNIFE_KARAMBIT", "models/weapons/v_knife_karam.mdl"}},
 	{508, {"M9 Bayonet", "WEAPON_KNIFE_M9_BAYONET", "models/weapons/v_knife_m9_bay.mdl"}},
 	{509, {"Huntsman Knife", "WEAPON_KNIFE_TACTICAL", "models/weapons/v_knife_tactical.mdl"}},
-	{512, {"Falchion Knife", "WEAPON_KNIFE_FALCHION", "models/weapons/v_knife_bayonet.mdl"}},
+	{512, {"Falchion Knife", "WEAPON_KNIFE_FALCHION", "models/weapons/v_knife_falchion_advanced.mdl"}},
 	{514, {"Bowie Knife", "WEAPON_KNIFE_SURVIVAL_BOWIE", "models/weapons/v_knife_survival_bowie.mdl"}},
 	{515, {"Butterfly Knife", "WEAPON_KNIFE_BUTTERFLY", "models/weapons/v_knife_butterfly.mdl"}},
 	{516, {"Shadow Daggers", "WEAPON_KNIFE_PUSH", "models/weapons/v_knife_push.mdl"}}
