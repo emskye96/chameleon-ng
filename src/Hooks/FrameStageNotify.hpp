@@ -10,68 +10,90 @@ void __fastcall hkFrameStageNotify(IBaseClientDLL* thisptr, void* edx, ClientFra
 
 	// Only perform our replacements during the PostDataUpdate start stage.
 	while (stage == ClientFrameStage_t::FRAME_NET_UPDATE_POSTDATAUPDATE_START) {
-		// Placeholder code (practically) verbatim from aixxe's Linux skin changer.
-		int localplayer_idx = engine->GetLocalPlayer();
-		C_BasePlayer* localplayer = reinterpret_cast<C_BasePlayer*>(entitylist->GetClientEntity(localplayer_idx));
+		// Get a pointer to our local player entity
+		int localplayer_index = engine->GetLocalPlayer();
+		C_BasePlayer* localplayer = reinterpret_cast<C_BasePlayer*>(entitylist->GetClientEntity(localplayer_index));
 
+		// Nothing to if we aren't alive.
 		if (!localplayer || localplayer->GetLifeState() != LIFE_ALIVE)
 			break;
 
+		// Get our player information.
 		player_info_t localplayer_info;
 
-		if (!engine->GetPlayerInfo(localplayer_idx, &localplayer_info))
+		if (!engine->GetPlayerInfo(localplayer_index, &localplayer_info))
 			break;
 
+		// Get an array containing handles of our weapons.
 		CBaseHandle* weapons = localplayer->GetWeapons();
 
-		for (size_t i = 0; i < weapons[i]; i++) {
+		for (size_t i = 0; weapons[i] != INVALID_EHANDLE_INDEX; i++) {
+			// Convert the weapon handle to an entity pointer.
 			C_BaseAttributableItem* weapon = reinterpret_cast<C_BaseAttributableItem*>(entitylist->GetClientEntityFromHandle(weapons[i]));
 			
 			if (!weapon)
 				continue;
 
+			// Get the current item definition index to uniquely identify this weapon.
 			unsigned int* item_definition_index = weapon->GetItemDefinitionIndex();
 
+			// Check if we have an existing override for this weapon.
 			if (config.HasWeaponConfiguration(*item_definition_index)) {
-				EconomyItem_t& weapon_config = config.GetWeaponConfiguration(*item_definition_index);
+				// Get a reference to the configuration structure for this weapon.
+				const EconomyItem_t& weapon_config = config.GetWeaponConfiguration(*item_definition_index);
 
-				if (weapon_config.custom_name)
-					snprintf(weapon->GetCustomName(), 32, "%s", weapon_config.custom_name);
+				// Force fallback values to be used.
+				*weapon->GetItemIDHigh() = -1;
 
-				if (weapon_config.entity_quality != -1)
-					*weapon->GetEntityQuality() = weapon_config.entity_quality;
+				// Set the owner of the weapon to our lower XUID. (fixes StatTrak)
+				*weapon->GetAccountID() = localplayer_info.xuid_low;
 
-				if (weapon_config.fallback_wear != -1)
-					*weapon->GetFallbackWear() = weapon_config.fallback_wear;
-
-				if (weapon_config.fallback_stattrak != -1)
-					*weapon->GetFallbackStatTrak() = weapon_config.fallback_stattrak;
-
-				if (weapon_config.fallback_seed != -1)
-					*weapon->GetFallbackSeed() = weapon_config.fallback_seed;
-
-				if (weapon_config.fallback_paint_kit != -1)
-					*weapon->GetFallbackPaintKit() = weapon_config.fallback_paint_kit;
-				
+				// Check if this weapon should be replaced by another.
 				if (weapon_config.item_definition_index != -1) {
+					// Make sure the replacement index is inside our item definition list.
 					if (ItemDefinitionIndex.find(weapon_config.item_definition_index) != ItemDefinitionIndex.end()) {
+						// Set the weapon model index -- required for paint kits to work on replacement items after the 29/11/2016 update.
 						*weapon->GetModelIndex() = modelinfo->GetModelIndex(ItemDefinitionIndex.at(weapon_config.item_definition_index).model);
 
 						// Make sure the original item is in our definition list too.
 						if (ItemDefinitionIndex.find(*item_definition_index) != ItemDefinitionIndex.end()) {
+							// Get references to both items.
 							const Item_t& original_item = ItemDefinitionIndex.at(*item_definition_index);
 							const Item_t& replacement_item = ItemDefinitionIndex.at(weapon_config.item_definition_index);
 
+							// Attempt to set the appropriate kill icon for the new item.
 							if (original_item.killicon && replacement_item.killicon)
 								config.SetKillIconOverride(original_item.killicon, replacement_item.killicon);
 
+							// Finally, update the item definition index.
 							*item_definition_index = weapon_config.item_definition_index;
 						}
 					}
 				}
 
-				*weapon->GetAccountID() = localplayer_info.xuid_low;
-				*weapon->GetItemIDHigh() = -1;
+				// Set weapon quality. (eg. StatTrak, Genuine, Souvenir)
+				if (weapon_config.entity_quality != -1)
+					*weapon->GetEntityQuality() = weapon_config.entity_quality;
+
+				// Apply custom name tag.
+				if (weapon_config.custom_name)
+					snprintf(weapon->GetCustomName(), 32, "%s", weapon_config.custom_name);
+
+				// Apply the paint kit.
+				if (weapon_config.fallback_paint_kit != -1)
+					*weapon->GetFallbackPaintKit() = weapon_config.fallback_paint_kit;
+
+				// Set weapon seed for paint kits with patterns.
+				if (weapon_config.fallback_seed != -1)
+					*weapon->GetFallbackSeed() = weapon_config.fallback_seed;
+
+				// Set weapon wear. (eg. Factory New - Battle Scarred)
+				if (weapon_config.fallback_wear != -1)
+					*weapon->GetFallbackWear() = weapon_config.fallback_wear;
+
+				// Apply StatTrak kill counter. (-1 disables, max 999999)
+				if (weapon_config.fallback_stattrak != -1)
+					*weapon->GetFallbackStatTrak() = weapon_config.fallback_stattrak;
 			}
 		}
 
@@ -83,7 +105,7 @@ void __fastcall hkFrameStageNotify(IBaseClientDLL* thisptr, void* edx, ClientFra
 					*viewmodel->GetModelIndex() = modelinfo->GetModelIndex(ItemDefinitionIndex.at(*active_weapon->GetItemDefinitionIndex()).model);
 				}
 			}
-		}		
+		}
 
 		break;
 	}
