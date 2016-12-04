@@ -138,6 +138,9 @@
     <ClInclude Include="src\FindPattern.hpp">
       <Filter>Header Files\Dependencies</Filter>
     </ClInclude>
+    <ClInclude Include="src\Renderer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Chameleon.cpp">
@@ -152,8 +155,8 @@
     <ClCompile Include="src\ImGui\imgui_draw.cpp">
       <Filter>Source Files\Dependencies\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\ImGui\imgui_demo.cpp">
-      <Filter>Source Files\Dependencies\ImGui</Filter>
+    <ClCompile Include="src\Renderer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

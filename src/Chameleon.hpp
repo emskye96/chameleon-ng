@@ -3,10 +3,9 @@
 #include "VMTHook/VMTHook.h"
 #include "SDK/SDK.hpp"
 
-#include "imgui.h"
-#include "imgui_impl_dx9.h"
-
 #include "FindPattern.hpp"
+
+#include "Renderer.hpp"
 
 extern std::unique_ptr<VMTHook> gameevents_hook;
 extern std::unique_ptr<VMTHook> clientdll_hook;

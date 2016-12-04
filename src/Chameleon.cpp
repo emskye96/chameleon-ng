@@ -35,6 +35,7 @@ std::unique_ptr<VMTHook> gameevents_hook;
 std::unique_ptr<VMTHook> d3d9_hook;
 
 NetVars netvars;
+Renderer renderer;
 
 void WINAPI Chameleon_Init(LPVOID dll_instance) {
 	// Get important class pointers from game DLLs using interface versions.
@@ -56,6 +57,9 @@ void WINAPI Chameleon_Init(LPVOID dll_instance) {
 	IDirect3DDevice9* d3d9_device = **reinterpret_cast<IDirect3DDevice9***>(
 		FindPattern("shaderapidx9.dll", PBYTE("\xA1\x00\x00\x00\x00\x50\x8B\x08\xFF\x51\x0C"), "x????xxxxxx") + 1
 	);
+
+	// Initialize the renderer.
+	renderer.Initialize(FindWindowA("Valve001", NULL), d3d9_device);
 
 	// Hook 'EndScene' and 'Reset' for our custom rendering.
 	d3d9_hook = std::make_unique<VMTHook>(d3d9_device);

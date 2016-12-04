@@ -64,6 +64,7 @@
     <ClInclude Include="src\ImGui\stb_rect_pack.h" />
     <ClInclude Include="src\ImGui\stb_textedit.h" />
     <ClInclude Include="src\ImGui\stb_truetype.h" />
+    <ClInclude Include="src\Renderer.hpp" />
     <ClInclude Include="src\SDK\Classes\CBaseEntity.hpp" />
     <ClInclude Include="src\SDK\Classes\ClientClass.hpp" />
     <ClInclude Include="src\SDK\Classes\IClientEntity.hpp" />
@@ -85,8 +86,8 @@
     <ClCompile Include="src\Chameleon.cpp" />
     <ClCompile Include="src\ImGui\examples\directx9_example\imgui_impl_dx9.cpp" />
     <ClCompile Include="src\ImGui\imgui.cpp" />
-    <ClCompile Include="src\ImGui\imgui_demo.cpp" />
     <ClCompile Include="src\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
