@@ -12,7 +12,6 @@ struct EconomyItem_t {
 	float fallback_wear = -1;
 	int item_definition_index = -1;
 	char custom_name[32];
-	int killicon = -1;
 };
 
 class Configuration {
@@ -21,7 +20,12 @@ class Configuration {
 		std::unordered_map<size_t, EconomyItem_t> item_config;
 		std::unordered_map<std::string, std::string> killicon_config;
 	public:
+		std::string GetBaseFolder();
 		const bool SetBaseFolder(HMODULE);
+
+		// Save & load presets from disk.
+		const bool LoadPreset(std::string);
+		const bool SavePreset(std::string);
 
 		// Weapon related functions.
 		const bool HasWeaponConfiguration(size_t);

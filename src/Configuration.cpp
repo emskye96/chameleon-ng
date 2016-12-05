@@ -1,5 +1,10 @@
 #include "Configuration.hpp"
 
+// Return the base folder containing all configuration files.
+std::string Configuration::GetBaseFolder() {
+	return this->base_folder;
+}
+
 // Always call this before reading or writing to any files.
 const bool Configuration::SetBaseFolder(HMODULE dll_instance) {
 	// Construct a buffer large enough to contain a filename.
@@ -14,6 +19,16 @@ const bool Configuration::SetBaseFolder(HMODULE dll_instance) {
 	base_folder = std::string(filename_buffer).substr(0, pos);
 
 	return true;
+}
+
+// Load configuration values from a file.
+const bool Configuration::LoadPreset(std::string filename) {
+	return true;
+}
+
+// Save configuration values to a file.
+const bool Configuration::SavePreset(std::string filename) {
+	return false;
 }
 
 // Checks if there is a valid configuration for the specified item.
