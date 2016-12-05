@@ -42,6 +42,7 @@ class Configuration {
 		// Weapon related functions.
 		const bool HasWeaponConfiguration(size_t);
 		EconomyItem_t& GetWeaponConfiguration(size_t);
+		const void ResetWeaponConfiguration();
 
 		// Killicon related functions.
 		const bool HasKillIconOverride(std::string weapon);

@@ -179,6 +179,13 @@ EconomyItem_t& Configuration::GetWeaponConfiguration(size_t item_definition_inde
 	return item_config.at(item_definition_index);
 }
 
+// Reset all weapon configurations.
+const void Configuration::ResetWeaponConfiguration() {
+	for (auto& item: this->item_config) {
+		item.second.Reset();
+	}
+}
+
 // Checks if an override exists for this kill icon.
 const bool Configuration::HasKillIconOverride(std::string weapon) {
 	return this->killicon_config.find(weapon) != this->killicon_config.end();
