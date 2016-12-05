@@ -6,7 +6,7 @@
 
 #include "FindPattern.hpp"
 
-extern void (*CL_FullUpdate) ();
+typedef void (*CL_FullUpdate_t) (void);
 
 #include "ItemDefinitions.hpp"
 #include "Configuration.hpp"

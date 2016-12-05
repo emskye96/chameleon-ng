@@ -36,7 +36,7 @@ std::unique_ptr<VMTHook> d3d9_hook;
 
 std::unique_ptr<RecvPropHook> sequence_hook;
 
-void (*CL_FullUpdate) () = NULL;
+CL_FullUpdate_t CL_FullUpdate = NULL;
 
 NetVars netvars;
 Renderer renderer;
@@ -64,7 +64,7 @@ void WINAPI Chameleon_Init(LPVOID dll_instance) {
 	);
 
 	// Scan for the 'cl_fullupdate' function allowing us to bypass the FCVAR_CHEAT check.
-	CL_FullUpdate = reinterpret_cast<void(*)()>(
+	CL_FullUpdate = reinterpret_cast<CL_FullUpdate_t>(
 		FindPattern("engine.dll", PBYTE("\x56\x8B\x35\x00\x00\x00\x00\x83\xBE\x6C"), "xxx????xxx")
 	);
 

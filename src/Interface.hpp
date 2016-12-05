@@ -1,5 +1,8 @@
 #pragma once
 
+// Allow us to immediately apply our changes by calling a full update.
+extern CL_FullUpdate_t CL_FullUpdate;
+
 // Perform all the GUI drawing here.
 inline void RenderInterface() {
 	// Place all item settings under a collapsing header.
@@ -16,18 +19,39 @@ inline void RenderInterface() {
 			// Create a new node in the tree for this item.
 			if (ImGui::TreeNode(item.second.display_name)) {
 				// Add input forms to edit values for this item.
-				ImGui::InputInt(std::string("Item Index##").append(item.second.entity_name).c_str(), &weapon.item_definition_index);
-				ImGui::InputInt(std::string("Paint Kit##").append(item.second.entity_name).c_str(), &weapon.fallback_paint_kit);
-				ImGui::InputInt(std::string("Seed##").append(item.second.entity_name).c_str(), &weapon.fallback_seed);
-				ImGui::InputInt(std::string("Quality##").append(item.second.entity_name).c_str(), &weapon.entity_quality);
-				ImGui::InputInt(std::string("StatTrak##").append(item.second.entity_name).c_str(), &weapon.fallback_stattrak);
-				ImGui::InputFloat(std::string("Wear##").append(item.second.entity_name).c_str(), &weapon.fallback_wear);
-				ImGui::InputText(std::string("Name Tag##").append(item.second.entity_name).c_str(), weapon.custom_name, 32);
+				ImGui::Text("Name tag");
+				ImGui::InputText(std::string("##custom_name").append(item.second.entity_name).c_str(), weapon.custom_name, 32);
+				ImGui::Spacing();
 
+				ImGui::Text("Paint kit");
+				ImGui::InputInt(std::string("##paint_kit").append(item.second.entity_name).c_str(), &weapon.fallback_paint_kit);
+				ImGui::Spacing();
+
+				ImGui::Text("Override item index");
+				ImGui::InputInt(std::string("##override_item").append(item.second.entity_name).c_str(), &weapon.item_definition_index);
+				ImGui::Spacing();
+
+				ImGui::Text("Custom seed");
+				ImGui::InputInt(std::string("##seed").append(item.second.entity_name).c_str(), &weapon.fallback_seed);
+				ImGui::Spacing();
+
+				ImGui::Text("Item quality");
+				ImGui::InputInt(std::string("##quality").append(item.second.entity_name).c_str(), &weapon.entity_quality);
+				ImGui::Spacing();
+
+				ImGui::Text("Item wear");
+				ImGui::SliderFloat(std::string("##wear").append(item.second.entity_name).c_str(), &weapon.fallback_wear, 0.00001f, 2.0f, "(%.5f)");
+				ImGui::Spacing();
+
+				ImGui::Text("StatTrak kills");
+				ImGui::InputInt(std::string("##stattrak").append(item.second.entity_name).c_str(), &weapon.fallback_stattrak);
+				ImGui::Spacing();
+				
 				// Add a placeholer 'Apply' button that calls 'cl_fullupdate'.
-				if (ImGui::Button("Apply", ImVec2(ImGui::GetContentRegionAvail().x, 20)))
+				if (ImGui::Button("Apply"))
 					CL_FullUpdate();
 
+				ImGui::Spacing();
 				ImGui::TreePop();
 			}
 		}
