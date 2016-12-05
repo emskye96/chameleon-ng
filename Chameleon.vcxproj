@@ -67,6 +67,7 @@
     <ClInclude Include="src\ImGui\stb_rect_pack.h" />
     <ClInclude Include="src\ImGui\stb_textedit.h" />
     <ClInclude Include="src\ImGui\stb_truetype.h" />
+    <ClInclude Include="src\JSON\src\json.hpp" />
     <ClInclude Include="src\RecvProxyHook.hpp" />
     <ClInclude Include="src\Renderer.hpp" />
     <ClInclude Include="src\SDK\Classes\CBaseEntity.hpp" />
