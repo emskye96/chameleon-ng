@@ -55,6 +55,7 @@
     <ClInclude Include="src\Chameleon.hpp" />
     <ClInclude Include="src\Configuration.hpp" />
     <ClInclude Include="src\Hooks\Sequence.hpp" />
+    <ClInclude Include="src\Interface.hpp" />
     <ClInclude Include="src\ItemDefinitions.hpp" />
     <ClInclude Include="src\FindPattern.hpp" />
     <ClInclude Include="src\Hooks\FireEventClientSide.hpp" />
