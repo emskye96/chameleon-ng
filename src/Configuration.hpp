@@ -24,8 +24,10 @@ class Configuration {
 		const bool SetBaseFolder(HMODULE);
 
 		// Save & load presets from disk.
+		const std::vector<std::string> GetPresets();
 		const bool LoadPreset(std::string);
 		const bool SavePreset(std::string);
+		const bool RemovePreset(std::string);
 
 		// Weapon related functions.
 		const bool HasWeaponConfiguration(size_t);

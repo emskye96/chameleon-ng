@@ -26,6 +26,26 @@ const bool Configuration::SetBaseFolder(HMODULE dll_instance) {
 	return true;
 }
 
+const std::vector<std::string> Configuration::GetPresets() {
+	std::vector<std::string> names;
+
+	WIN32_FIND_DATAA find_data;
+	HANDLE preset_file = FindFirstFileA(config.GetBaseFolder().append("\\*.cfg").c_str(), &find_data);
+
+	if (preset_file != INVALID_HANDLE_VALUE) {
+		do {
+			if (find_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+				continue;
+
+			names.push_back(find_data.cFileName);
+		} while (FindNextFileA(preset_file, &find_data));
+
+		FindClose(preset_file);
+	}
+
+	return names;
+}
+
 // Load configuration values from a file.
 const bool Configuration::LoadPreset(std::string filename) {
 	// Resolve the relative filename to a full path.
@@ -131,6 +151,12 @@ const bool Configuration::SavePreset(std::string filename) {
 	output_file.close();
 	
 	return true;
+}
+
+const bool Configuration::RemovePreset(std::string filename) {
+	filename = config.GetBaseFolder() + "\\" + filename;
+
+	return std::remove(filename.c_str()) == 0;
 }
 
 // Checks if there is a valid configuration for the specified item.
