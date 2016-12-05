@@ -47,7 +47,7 @@ const std::vector<std::string> Configuration::GetPresets() {
 }
 
 // Load configuration values from a file.
-const bool Configuration::LoadPreset(std::string filename) {
+const bool Configuration::LoadPreset(std::string filename, bool reset = false) {
 	// Resolve the relative filename to a full path.
 	std::string input_filename = this->base_folder + "\\" + filename;
 
@@ -67,13 +67,16 @@ const bool Configuration::LoadPreset(std::string filename) {
 	
 	// Start reading the configuration for each item.
 	for (const auto& item: ItemDefinitionIndex) {
+		EconomyItem_t& item_config = this->GetWeaponConfiguration(item.first);
+		item_config.is_valid = true;
+
+		if (reset)
+			item_config.Reset();
+
 		std::string item_key = std::to_string(item.first);
 
 		if (preset["items"][item_key].empty())
 			continue;
-
-		EconomyItem_t& item_config = this->GetWeaponConfiguration(item.first);
-		item_config.is_valid = true;
 
 		if (preset["items"][item_key].find("entity_quality") != preset["items"][item_key].end())
 			item_config.entity_quality = preset["items"][item_key]["entity_quality"].get<int>();
@@ -109,7 +112,7 @@ const bool Configuration::SavePreset(std::string filename) {
 
 	// Open the output configuration file for writing.
 	std::ofstream output_file = std::ofstream(output_filename);
-
+	
 	if (!output_file.good())
 		return false;
 

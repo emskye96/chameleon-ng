@@ -108,6 +108,9 @@ HRESULT __stdcall hkEndScene(IDirect3DDevice9* thisptr) {
 			presets = config.GetPresets();
 		}
 
+		static bool reset_on_load = false;
+		ImGui::Checkbox("Reset settings on load.", &reset_on_load);
+
 		if (presets.size() >= 1) {
 			for (const std::string& preset: presets) {
 				ImGui::AlignFirstTextHeightToWidgets();
@@ -116,12 +119,12 @@ HRESULT __stdcall hkEndScene(IDirect3DDevice9* thisptr) {
 				ImGui::SameLine();
 
 				if (ImGui::Button(std::string("Save##").append(preset).c_str()))
-					config.SavePreset(preset_filename);
+					config.SavePreset(preset);
 
 				ImGui::SameLine();
 
 				if (ImGui::Button(std::string("Load##").append(preset).c_str())) {
-					config.LoadPreset(preset);
+					config.LoadPreset(preset, reset_on_load);
 					engine->ClientCmd_Unrestricted("cl_fullupdate");
 				}
 
