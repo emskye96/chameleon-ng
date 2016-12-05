@@ -6,6 +6,8 @@
 
 #include "FindPattern.hpp"
 
+extern void (*CL_FullUpdate) ();
+
 #include "ItemDefinitions.hpp"
 #include "Configuration.hpp"
 #include "Renderer.hpp"

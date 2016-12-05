@@ -26,7 +26,7 @@ inline void RenderInterface() {
 
 				// Add a placeholer 'Apply' button that calls 'cl_fullupdate'.
 				if (ImGui::Button("Apply", ImVec2(ImGui::GetContentRegionAvail().x, 20)))
-					engine->ClientCmd_Unrestricted("cl_fullupdate");
+					CL_FullUpdate();
 
 				ImGui::TreePop();
 			}
@@ -63,7 +63,7 @@ inline void RenderInterface() {
 
 				if (ImGui::Button(std::string("Load##").append(preset).c_str())) {
 					config.LoadPreset(preset, reset_on_load);
-					engine->ClientCmd_Unrestricted("cl_fullupdate");
+					CL_FullUpdate();
 				}
 
 				ImGui::SameLine();
