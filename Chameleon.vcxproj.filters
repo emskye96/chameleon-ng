@@ -55,6 +55,9 @@
     <Filter Include="Header Files\Hooks\NetVar Proxies">
       <UniqueIdentifier>{51780293-efac-4ea8-8886-a2d8c7d91d0b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Dependencies\JSON">
+      <UniqueIdentifier>{050e9736-3e03-41e3-94ff-d942d370123d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Chameleon.hpp">
@@ -151,6 +154,12 @@
       <Filter>Header Files\Hooks\NetVar Proxies</Filter>
     </ClInclude>
     <ClInclude Include="src\RecvProxyHook.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JSON\src\json.hpp">
+      <Filter>Header Files\Dependencies\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Interface.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -36,6 +36,8 @@ std::unique_ptr<VMTHook> d3d9_hook;
 
 std::unique_ptr<RecvPropHook> sequence_hook;
 
+CL_FullUpdate_t CL_FullUpdate = NULL;
+
 NetVars netvars;
 Renderer renderer;
 Configuration config;
@@ -59,6 +61,11 @@ void WINAPI Chameleon_Init(LPVOID dll_instance) {
 	// Scan for the IDirect3DDevice9 pointer in 'shaderapidx9.dll'.
 	IDirect3DDevice9* d3d9_device = **reinterpret_cast<IDirect3DDevice9***>(
 		FindPattern("shaderapidx9.dll", PBYTE("\xA1\x00\x00\x00\x00\x50\x8B\x08\xFF\x51\x0C"), "x????xxxxxx") + 1
+	);
+
+	// Scan for the 'cl_fullupdate' function allowing us to bypass the FCVAR_CHEAT check.
+	CL_FullUpdate = reinterpret_cast<CL_FullUpdate_t>(
+		FindPattern("engine.dll", PBYTE("\x56\x8B\x35\x00\x00\x00\x00\x83\xBE\x6C"), "xxx????xxx")
 	);
 
 	// Initialize the renderer.
