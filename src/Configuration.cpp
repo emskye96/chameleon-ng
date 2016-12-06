@@ -57,8 +57,16 @@ const bool Configuration::LoadPreset(std::string filename, bool reset = false) {
 	if (!input_file.good())
 		return false;
 
-	// Read and parse the file as JSON.
-	nlohmann::json preset = nlohmann::json::parse(input_file);
+	nlohmann::json preset;
+	
+	try {
+		// Attempt to parse the file.
+		preset << input_file;
+	} catch (...) {
+		// Catch parsing exceptions.
+		input_file.close();
+		return false;
+	}
 	
 	if (preset["items"].empty()) {
 		input_file.close();
