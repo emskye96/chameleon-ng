@@ -4,9 +4,10 @@ chameleon-ng is an extended version of the [Chameleon](https://github.com/aixxe/
 
 * Allows usage of skins on any weapon without restrictions.
 * Includes primitive fix for special knife animations.
+* Full in-game graphical interface for configuration.
 * Network variable offsets are retrieved at runtime.
 * Ability to override weapon kill feed icons.
-* Full in-game graphical configuration.
+* Persistent JSON configuration files.
 
 ## Additional requirements
 

@@ -4,3 +4,6 @@
 [submodule "src/ImGui"]
 	path = src/ImGui
 	url = https://github.com/ocornut/imgui.git
+[submodule "src/JSON"]
+	path = src/JSON
+	url = https://github.com/nlohmann/json.git
