@@ -14,5 +14,5 @@ template <class T> inline T* CaptureInterface(const char* filename, const char* 
 	CreateInterface_t create_interface_fn = reinterpret_cast<CreateInterface_t>(create_interface_proc);
 
 	// Call the function and return a pointer to the returned interface.
-	return reinterpret_cast<T*>(create_interface_fn(version, nullptr));
+	return static_cast<T*>(create_interface_fn(version, nullptr));
 }

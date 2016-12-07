@@ -40,7 +40,7 @@ void __cdecl hkSequenceProxyFn(const CRecvProxyData* proxy_data_const, void* ent
 	static RecvVarProxyFn oSequenceProxyFn = sequence_hook->GetOriginalFunction();
 
 	// Get a pointer to our local player entity
-	C_BasePlayer* localplayer = reinterpret_cast<C_BasePlayer*>(entitylist->GetClientEntity(engine->GetLocalPlayer()));
+	C_BasePlayer* localplayer = static_cast<C_BasePlayer*>(entitylist->GetClientEntity(engine->GetLocalPlayer()));
 
 	// Don't go any further if we're not alive.
 	if (!localplayer || localplayer->GetLifeState() != LIFE_ALIVE)
@@ -50,7 +50,7 @@ void __cdecl hkSequenceProxyFn(const CRecvProxyData* proxy_data_const, void* ent
 	CRecvProxyData* proxy_data = const_cast<CRecvProxyData*>(proxy_data_const);
 
 	// Cast the view model entity to the correct class.
-	C_BaseViewModel* viewmodel = reinterpret_cast<C_BaseViewModel*>(entity);
+	C_BaseViewModel* viewmodel = static_cast<C_BaseViewModel*>(entity);
 
 	if (viewmodel && viewmodel->GetOwner()) {
 		// Ensure the owner handle is valid.
@@ -58,7 +58,7 @@ void __cdecl hkSequenceProxyFn(const CRecvProxyData* proxy_data_const, void* ent
 			return oSequenceProxyFn(proxy_data_const, entity, output);
 
 		// Convert the view model owner handle to a player pointer.
-		C_BasePlayer* owner = reinterpret_cast<C_BasePlayer*>(entitylist->GetClientEntityFromHandle(viewmodel->GetOwner()));
+		C_BasePlayer* owner = static_cast<C_BasePlayer*>(entitylist->GetClientEntityFromHandle(viewmodel->GetOwner()));
 		
 		// Compare the owner entity of this view model to the local player entity.
 		if (owner == entitylist->GetClientEntity(engine->GetLocalPlayer())) {

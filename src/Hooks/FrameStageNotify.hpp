@@ -12,7 +12,7 @@ void __fastcall hkFrameStageNotify(IBaseClientDLL* thisptr, void* edx, ClientFra
 	while (stage == ClientFrameStage_t::FRAME_NET_UPDATE_POSTDATAUPDATE_START) {
 		// Get a pointer to our local player entity
 		int localplayer_index = engine->GetLocalPlayer();
-		C_BasePlayer* localplayer = reinterpret_cast<C_BasePlayer*>(entitylist->GetClientEntity(localplayer_index));
+		C_BasePlayer* localplayer = static_cast<C_BasePlayer*>(entitylist->GetClientEntity(localplayer_index));
 
 		// Nothing to if we aren't alive.
 		if (!localplayer || localplayer->GetLifeState() != LIFE_ALIVE)
@@ -29,7 +29,7 @@ void __fastcall hkFrameStageNotify(IBaseClientDLL* thisptr, void* edx, ClientFra
 
 		for (size_t i = 0; weapons[i] != INVALID_EHANDLE_INDEX; i++) {
 			// Convert the weapon handle to an entity pointer.
-			C_BaseAttributableItem* weapon = reinterpret_cast<C_BaseAttributableItem*>(entitylist->GetClientEntityFromHandle(weapons[i]));
+			C_BaseAttributableItem* weapon = static_cast<C_BaseAttributableItem*>(entitylist->GetClientEntityFromHandle(weapons[i]));
 			
 			if (!weapon)
 				continue;
@@ -83,28 +83,48 @@ void __fastcall hkFrameStageNotify(IBaseClientDLL* thisptr, void* edx, ClientFra
 				if (weapon_config.fallback_paint_kit != -1)
 					*weapon->GetFallbackPaintKit() = weapon_config.fallback_paint_kit;
 
-				// Set weapon seed for paint kits with patterns.
+				// Set weapon seed for paint kits with patterns. (eg. Fade, Crimson Web, ...)
 				if (weapon_config.fallback_seed != -1)
 					*weapon->GetFallbackSeed() = weapon_config.fallback_seed;
 
 				// Set weapon wear. (eg. Factory New - Battle Scarred)
 				if (weapon_config.fallback_wear != -1)
 					*weapon->GetFallbackWear() = weapon_config.fallback_wear;
-
+				
 				// Apply StatTrak kill counter. (-1 disables, max 999999)
 				if (weapon_config.fallback_stattrak != -1)
 					*weapon->GetFallbackStatTrak() = weapon_config.fallback_stattrak;
 			}
 		}
+		
+		// Get a handle to the view model entity.
+		CBaseHandle viewmodel_handle = localplayer->GetViewModel();
 
-		// TODO: Really need to clean this up.
-		if (C_BaseViewModel* viewmodel = reinterpret_cast<C_BaseViewModel*>(entitylist->GetClientEntityFromHandle(localplayer->GetViewModel()))) {
-			if (C_BaseAttributableItem* active_weapon = reinterpret_cast<C_BaseAttributableItem*>(entitylist->GetClientEntityFromHandle(viewmodel->GetWeapon()))) {
-				// Set appropriate viewmodel index based on item definition index.
-				if (ItemDefinitionIndex.find(*active_weapon->GetItemDefinitionIndex()) != ItemDefinitionIndex.end()) {
-					*viewmodel->GetModelIndex() = modelinfo->GetModelIndex(ItemDefinitionIndex.at(*active_weapon->GetItemDefinitionIndex()).model);
-				}
-			}
+		if (viewmodel_handle == INVALID_EHANDLE_INDEX)
+			break;
+
+		// Convert the view model handle into an entity pointer.
+		C_BaseViewModel* viewmodel = static_cast<C_BaseViewModel*>(entitylist->GetClientEntityFromHandle(viewmodel_handle));
+
+		if (!viewmodel)
+			break;
+
+		// Get a handle to the active weapon for this view model.
+		CBaseHandle viewmodel_weapon_handle = viewmodel->GetWeapon();
+
+		if (viewmodel_weapon_handle == INVALID_EHANDLE_INDEX)
+			break;
+
+		// Convert the view model weapon handle into an entity pointer.
+		C_BaseAttributableItem* viewmodel_weapon = static_cast<C_BaseAttributableItem*>(entitylist->GetClientEntityFromHandle(viewmodel_weapon_handle));
+
+		if (!viewmodel_weapon)
+			break;
+
+		// Finally, write the correct model index for this weapon.
+		if (ItemDefinitionIndex.find(*viewmodel_weapon->GetItemDefinitionIndex()) != ItemDefinitionIndex.end()) {
+			const Item_t& override_weapon = ItemDefinitionIndex.at(*viewmodel_weapon->GetItemDefinitionIndex());
+			*viewmodel->GetModelIndex() = modelinfo->GetModelIndex(override_weapon.model);
 		}
 
 		break;

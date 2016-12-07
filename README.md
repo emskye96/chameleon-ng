@@ -8,6 +8,7 @@ chameleon-ng is an extended version of the [Chameleon](https://github.com/aixxe/
 * Network variable offsets are retrieved at runtime.
 * Ability to override weapon kill feed icons.
 * Persistent JSON configuration files.
+* Button to instantly apply changes.
 
 ## Additional requirements
 

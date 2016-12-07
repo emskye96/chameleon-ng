@@ -5,10 +5,10 @@
 #include "../Interface.hpp"
 
 // Function signature of IDirect3DDevice9::EndScene.
-typedef HRESULT(__stdcall *EndScene_t) (IDirect3DDevice9*);
+typedef HRESULT (__stdcall *EndScene_t) (IDirect3DDevice9*);
 
 // Function signature of IDirect3DDevice9::Reset.
-typedef HRESULT(__stdcall *Reset_t) (IDirect3DDevice9*, D3DPRESENT_PARAMETERS*);
+typedef HRESULT (__stdcall *Reset_t) (IDirect3DDevice9*, D3DPRESENT_PARAMETERS*);
 
 // Replacement function that will get called when the device is reset.
 HRESULT __stdcall hkReset(IDirect3DDevice9* thisptr, D3DPRESENT_PARAMETERS* params) {
@@ -42,7 +42,6 @@ HRESULT __stdcall hkEndScene(IDirect3DDevice9* thisptr) {
 	// Check whether the GUI is currently open.
 	bool is_renderer_active = renderer.IsActive();
 
-	// TODO: Directly set the value using the ConVar pointer.
 	if (is_renderer_active) {
 		if (mouse_enabled) {
 			// Disable the mouse while the menu is open.
@@ -57,18 +56,20 @@ HRESULT __stdcall hkEndScene(IDirect3DDevice9* thisptr) {
 		}
 	}
 	
-	// Enable the in-built cursor when the GUI is active.
+	// Enable the in-built cursor while the GUI is active.
 	ImGui::GetIO().MouseDrawCursor = is_renderer_active;
 	
-	// Call the original while the GUI is inactive.
+	// Don't do anything else if the GUI is inactive.
 	if (!is_renderer_active)
 		return oEndScene(thisptr);
 
+	// Let ImGui know we've started a new frame.
 	ImGui_ImplDX9_NewFrame();
 	
-	// Draw the interface.
+	// Queue up draw calls for the interface.
 	RenderInterface();
 
+	// Render everything in the draw lists.
 	ImGui::Render();
 
 	// Finally, call the original function.
