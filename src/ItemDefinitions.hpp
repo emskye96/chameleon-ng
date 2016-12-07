@@ -71,3 +71,18 @@ const std::unordered_map<size_t, Item_t> ItemDefinitionIndex = {
 	{515, {"Butterfly Knife", "WEAPON_KNIFE_BUTTERFLY", "models/weapons/v_knife_butterfly.mdl", "knife_butterfly"}},
 	{516, {"Shadow Daggers", "WEAPON_KNIFE_PUSH", "models/weapons/v_knife_push.mdl", "knife_push"}}
 };
+
+// Currently unused -- only here for reference.
+const std::unordered_map<size_t, std::string> EntityQuality = {
+	{0, "Normal"},
+	{1, "Genuine"},
+	{2, "Vintage"},
+	{3, "Unusual"},
+	{5, "Community"},
+	{6, "Developer"},
+	{7, "Self-Made"},
+	{8, "Customized"},
+	{9, "Strange"},
+	{10, "Completed"},
+	{12, "Tournament"}
+};
