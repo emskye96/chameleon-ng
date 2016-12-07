@@ -8,8 +8,8 @@ class IClientNetworkable;
 
 class IClientEntityList {
 	public:
-		virtual IClientNetworkable*	GetClientNetworkable(int entindex) = 0;
-		virtual IClientNetworkable*	GetClientNetworkableFromHandle(CBaseHandle entity_handle) = 0;
+		virtual IClientNetworkable* GetClientNetworkable(int entindex) = 0;
+		virtual IClientNetworkable* GetClientNetworkableFromHandle(CBaseHandle entity_handle) = 0;
 		virtual IClientUnknown* GetClientUnknownFromHandle(CBaseHandle entity_handle) = 0;
 		virtual IClientEntity* GetClientEntity(int entindex) = 0;
 		virtual IClientEntity* GetClientEntityFromHandle(CBaseHandle entity_handle) = 0;
