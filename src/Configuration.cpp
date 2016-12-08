@@ -116,7 +116,7 @@ const bool Configuration::LoadPreset(std::string filename, bool reset = false) {
 // Save configuration values to a file.
 const bool Configuration::SavePreset(std::string filename) {
 	// Resolve the relative filename to a full path.
-	std::string output_filename = this->base_folder + "\\" + filename;
+	std::string output_filename = this->base_folder + "\\" + filename + ".cfg";
 
 	// Open the output configuration file for writing.
 	std::ofstream output_file = std::ofstream(output_filename);
