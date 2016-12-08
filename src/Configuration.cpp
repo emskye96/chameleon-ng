@@ -10,6 +10,11 @@ std::string Configuration::GetBaseFolder() {
 	return this->base_folder;
 }
 
+// Return the file extension used by configuration files.
+std::string Configuration::GetConfigExtension() {
+	return this->config_extension;
+}
+
 // Always call this before reading or writing to any files.
 const bool Configuration::SetBaseFolder(HMODULE dll_instance) {
 	// Construct a buffer large enough to contain a filename.
@@ -27,19 +32,26 @@ const bool Configuration::SetBaseFolder(HMODULE dll_instance) {
 }
 
 const std::vector<std::string> Configuration::GetPresets() {
+	// Store final results in this string vector.
 	std::vector<std::string> names;
 
+	// Search for configuration files matching the specified extension in the base directory.
 	WIN32_FIND_DATAA find_data;
-	HANDLE preset_file = FindFirstFileA(config.GetBaseFolder().append("\\*.cfg").c_str(), &find_data);
+	HANDLE preset_file = FindFirstFileA(config.GetBaseFolder().append("\\*" + config_extension).c_str(), &find_data);
 
+	// Check if any results were returned by the search.
 	if (preset_file != INVALID_HANDLE_VALUE) {
+		// Continue finding more files until none are left.
 		do {
+			// Ignore any directories.
 			if (find_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 				continue;
 
+			// Add configuration file to names vector.
 			names.push_back(find_data.cFileName);
 		} while (FindNextFileA(preset_file, &find_data));
 
+		// Clean up used handle.
 		FindClose(preset_file);
 	}
 

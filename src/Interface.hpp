@@ -77,7 +77,10 @@ inline void RenderInterface() {
 	}
 
 	if (ImGui::CollapsingHeader("Presets")) {
-		// Get a list of *.cfg files in the working directory.
+		// Get the configuration file extension.
+		static std::string extension = config.GetConfigExtension();
+
+		// Get a list of configuration files in the working directory.
 		static std::vector<std::string> presets = config.GetPresets();
 
 		// Show a text box for creating new presets.
@@ -87,8 +90,14 @@ inline void RenderInterface() {
 		ImGui::SameLine();
 		
 		if (ImGui::Button("New")) {
+			// Append the file extension if the user did not specify it.
+			std::string filename(preset_filename);
+			
+			if (!std::equal(extension.rbegin(), extension.rend(), filename.rbegin()))
+				filename = filename.append(extension);
+
 			// Save the new preset to disk.
-			config.SavePreset(preset_filename);
+			config.SavePreset(filename);
 
 			// Refresh the list of presets.
 			presets = config.GetPresets();

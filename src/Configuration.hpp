@@ -27,10 +27,12 @@ struct EconomyItem_t {
 class Configuration {
 	private:
 		std::string base_folder;
+		std::string config_extension = ".cfg";
 		std::unordered_map<size_t, EconomyItem_t> item_config;
 		std::unordered_map<std::string, std::string> killicon_config;
 	public:
 		std::string GetBaseFolder();
+		std::string GetConfigExtension();
 		const bool SetBaseFolder(HMODULE);
 
 		// Save & load presets from disk.
