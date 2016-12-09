@@ -49,7 +49,7 @@ const std::vector<std::string> Configuration::GetPresets() {
 // Load configuration values from a file.
 const bool Configuration::LoadPreset(std::string filename, bool reset = false) {
 	// Resolve the relative filename to a full path.
-	std::string input_filename = this->base_folder + "\\" + filename + ".cfg";
+	std::string input_filename = this->base_folder + "\\" + filename;
 
 	// Open the input configuration file for reading.
 	std::ifstream input_file = std::ifstream(input_filename);
