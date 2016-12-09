@@ -1,6 +1,6 @@
 #include <fstream>
 
-#include "JSON\src\json.hpp"
+#include "JSON\json.hpp"
 
 #include "Configuration.hpp"
 #include "ItemDefinitions.hpp"
