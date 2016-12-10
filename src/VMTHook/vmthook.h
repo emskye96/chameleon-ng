@@ -24,7 +24,7 @@ class VMTHook {
 			const std::size_t table_size = this->total_functions * sizeof(std::uintptr_t);
 
 			this->original_vft = *this->baseclass;
-			this->current_vft = std::make_unique<std::uintptr_t[]>(table_size);
+			this->current_vft = std::make_unique<std::uintptr_t[]>(this->total_functions);
 
 			std::memcpy(this->current_vft.get(), this->original_vft, table_size);
 
@@ -35,11 +35,11 @@ class VMTHook {
 			*this->baseclass = this->original_vft;
 		};
 
-		template <typename Function> inline Function GetOriginalFunction(std::size_t function_index) {
+		template <typename Function> inline const Function GetOriginalFunction(std::size_t function_index) {
 			return reinterpret_cast<Function>(this->original_vft[function_index]);
 		}
 
-		inline bool HookFunction(void* new_function, const std::size_t function_index) {
+		inline const bool HookFunction(void* new_function, const std::size_t function_index) {
 			if (function_index > this->total_functions)
 				return false;
 
@@ -48,7 +48,7 @@ class VMTHook {
 			return true;
 		}
 
-		inline bool UnhookFunction(const std::size_t function_index) {
+		inline const bool UnhookFunction(const std::size_t function_index) {
 			if (function_index > this->total_functions)
 				return false;
 
@@ -57,7 +57,7 @@ class VMTHook {
 			return true;
 		}
 
-		inline std::size_t GetTotalFunctions() {
+		inline const std::size_t GetTotalFunctions() {
 			return this->total_functions;
 		}
 };
