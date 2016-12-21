@@ -21,17 +21,17 @@ Renderer::~Renderer() {
 	SetWindowLongPtr(this->window, GWLP_WNDPROC, LONG_PTR(game_wndproc));
 }
 
-const bool Renderer::IsReady() {
+bool Renderer::IsReady() const {
 	// Whether 'Initialize' has been called successfully yet.
 	return this->ready;
 }
 
-const bool Renderer::IsActive() {
+bool Renderer::IsActive() const {
 	// Whether the GUI is accepting input and should be drawn.
 	return this->ready && this->active;
 }
 
-const bool Renderer::Initialize(HWND window, IDirect3DDevice9* device) {
+bool Renderer::Initialize(HWND window, IDirect3DDevice9* device) {
 	// Store the window handle for cleanup later.
 	this->window = window;
 
@@ -45,7 +45,7 @@ const bool Renderer::Initialize(HWND window, IDirect3DDevice9* device) {
 	return this->ready;
 }
 
-const bool Renderer::HandleInputMessage(UINT message_type, WPARAM w_param, LPARAM l_param) {
+bool Renderer::HandleInputMessage(UINT message_type, WPARAM w_param, LPARAM l_param) {
 	// Toggle the menu when INSERT is pressed.
 	if (message_type == WM_KEYUP && w_param == VK_INSERT)
 		this->active = !this->active;
