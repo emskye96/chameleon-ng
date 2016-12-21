@@ -38,7 +38,6 @@ std::unique_ptr<RecvPropHook> sequence_hook;
 
 CL_FullUpdate_t CL_FullUpdate = NULL;
 
-NetVars netvars;
 Renderer renderer;
 Configuration config;
 
@@ -81,7 +80,7 @@ void WINAPI Chameleon_Init(LPVOID dll_instance) {
 
 	// Find the animation sequence property from 'CBaseViewModel' for our NetVar proxy.
 	RecvProp* sequence_property = nullptr;
-	netvars.GetOffset("CBaseViewModel", "m_nSequence", &sequence_property);
+	NetVars::GetOffset("CBaseViewModel", "m_nSequence", &sequence_property);
 
 	// Hook the 'm_nSequence' proxy function to fix some knife animations.
 	sequence_hook = std::make_unique<RecvPropHook>(sequence_property);
