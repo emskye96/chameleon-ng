@@ -1,7 +1,7 @@
 /*
 
 	chameleon-ng - skin & knife changer for Counter-Strike: Global Offensive.
-	Copyright (C) 2014 - 2016, TEAM SKYENET. (www.skyenet.org)
+	Copyright (C) 2014 - 2017, TEAM SKYENET. (www.skyenet.org)
 
 	Contributors:
 		* Emma N. Skye <emma@skyenet.org>
