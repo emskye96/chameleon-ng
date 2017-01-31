@@ -30,12 +30,12 @@ typedef struct player_info_s {
 
 class IVEngineClient {
 	public:
-		inline bool GetPlayerInfo(int Index, player_info_t* PlayerInfo) {
-			return GetVirtualFunction<bool(__thiscall *)(IVEngineClient*, int, player_info_t*)>(this, 8)(this, Index, PlayerInfo);
+		inline bool GetPlayerInfo(int index, player_info_t* player_info) {
+			return GetVirtualFunction<bool(__thiscall *)(IVEngineClient*, int, player_info_t*)>(this, 8)(this, index, player_info);
 		}
 
-		inline int GetPlayerForUserID(int UserID) {
-			return GetVirtualFunction<bool(__thiscall *)(IVEngineClient*, int)>(this, 9)(this, UserID);
+		inline int GetPlayerForUserID(int userid) {
+			return GetVirtualFunction<bool(__thiscall *)(IVEngineClient*, int)>(this, 9)(this, userid);
 		}
 
 		inline int GetLocalPlayer() {
