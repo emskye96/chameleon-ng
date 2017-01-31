@@ -162,6 +162,9 @@
     <ClInclude Include="src\Interface.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\SDK\Classes\CBaseClientState.hpp">
+      <Filter>Header Files\Source SDK\Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Chameleon.cpp">

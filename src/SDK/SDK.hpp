@@ -7,6 +7,7 @@
 #include "Utilities/Virtuals.hpp"
 
 #include "Classes/DataTable.hpp"
+#include "Classes/CBaseClientState.hpp"
 #include "Classes/ClientClass.hpp"
 #include "Classes/IGameEvent.hpp"
 #include "Classes/IClientEntity.hpp"

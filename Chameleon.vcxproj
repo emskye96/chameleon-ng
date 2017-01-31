@@ -73,6 +73,7 @@
     <ClInclude Include="src\JSON\src\json.hpp" />
     <ClInclude Include="src\RecvProxyHook.hpp" />
     <ClInclude Include="src\Renderer.hpp" />
+    <ClInclude Include="src\SDK\Classes\CBaseClientState.hpp" />
     <ClInclude Include="src\SDK\Classes\CBaseEntity.hpp" />
     <ClInclude Include="src\SDK\Classes\ClientClass.hpp" />
     <ClInclude Include="src\SDK\Classes\IClientEntity.hpp" />

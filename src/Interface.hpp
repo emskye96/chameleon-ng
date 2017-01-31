@@ -1,8 +1,5 @@
 #pragma once
 
-// Allow us to immediately apply our changes by calling a full update.
-extern CL_FullUpdate_t CL_FullUpdate;
-
 // Perform all the GUI drawing here.
 inline void RenderInterface() {
 	// Place all item settings under a collapsing header.
@@ -29,7 +26,7 @@ inline void RenderInterface() {
 
 				ImGui::Text("Paint kit");
 				if (ImGui::InputInt(std::string("##paint_kit").append(item.second.entity_name).c_str(), &weapon.fallback_paint_kit) && update_on_paintkit)
-					CL_FullUpdate();
+					(*clientstate)->ForceFullUpdate();
 				ImGui::Checkbox(std::string("Update when paint kit is changed.##").append(item.second.entity_name).c_str(), &update_on_paintkit);
 				ImGui::Spacing();
 
@@ -39,7 +36,7 @@ inline void RenderInterface() {
 
 				ImGui::Text("Custom seed");
 				if (ImGui::InputInt(std::string("##seed").append(item.second.entity_name).c_str(), &weapon.fallback_seed) && update_on_seed)
-					CL_FullUpdate();
+					(*clientstate)->ForceFullUpdate();
 				ImGui::Checkbox(std::string("Update when seed is changed.##").append(item.second.entity_name).c_str(), &update_on_seed);
 				ImGui::Spacing();
 
@@ -60,14 +57,14 @@ inline void RenderInterface() {
 					weapon.Reset();
 
 					// Perform a full update.
-					CL_FullUpdate();
+					(*clientstate)->ForceFullUpdate();
 				}
 
 				ImGui::SameLine();
 				
 				if (ImGui::Button("Apply")) {
 					// Perform a full update.
-					CL_FullUpdate();
+					(*clientstate)->ForceFullUpdate();
 				}
 
 				ImGui::Spacing();
@@ -126,7 +123,7 @@ inline void RenderInterface() {
 					config.LoadPreset(preset, reset_on_load);
 
 					// Perform a full update.
-					CL_FullUpdate();
+					(*clientstate)->ForceFullUpdate();
 				}
 
 				ImGui::SameLine();
@@ -155,7 +152,7 @@ inline void RenderInterface() {
 			config.ResetWeaponConfiguration();
 
 			// Perform a full update.
-			CL_FullUpdate();
+			(*clientstate)->ForceFullUpdate();
 		}
 	}
 }
