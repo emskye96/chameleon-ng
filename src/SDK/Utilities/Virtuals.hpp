@@ -5,5 +5,5 @@ inline void**& GetVirtualTable(void* baseclass) {
 }
 
 template <typename Fn> inline Fn GetVirtualFunction(void* vftable, size_t index) {
-	return static_cast<Fn>(GetVirtualTable(vftable)[index]);
+	return reinterpret_cast<Fn>(GetVirtualTable(vftable)[index]);
 }
