@@ -14,10 +14,10 @@ chameleon-ng is an extended version of the [Chameleon](https://github.com/aixxe/
 
 ## Usage
 
-Download the source code at the [Releases](https://github.com/emskye96/chameleon-ng/releases) page or clone the repository with submodules.
+Download the source code at the [Releases](https://github.com/emskye96/chameleon-ng/releases) page or clone the repository.
 
 ```
-git clone --recursive https://github.com/emskye96/chameleon-ng.git
+git clone https://github.com/emskye96/chameleon-ng.git
 ```
 
 Compile with Visual Studio and inject the output DLL with your preferred injector. Note that usage of some public injectors can result in a Valve Anti-Cheat ban. It is highly recommended to use your own DLL injector.
