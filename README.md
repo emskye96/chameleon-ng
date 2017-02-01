@@ -4,8 +4,6 @@
 
 chameleon-ng is an extended version of the [Chameleon](https://github.com/aixxe/Chameleon) project, an internal skin & knife changer for Counter-Strike: Global Offensive. Like the original project, the code contains extensive comments intended for those new to game manipulation.
 
-**Make sure to enable** `net_graph` **or** `cl_showfps` **if the menu is not drawing in-game.**
-
 * Allows usage of skins on any weapon without restrictions.
 * Includes primitive fix for special knife animations.
 * Full in-game graphical interface for configuration.
