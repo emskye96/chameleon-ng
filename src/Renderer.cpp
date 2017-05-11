@@ -46,6 +46,10 @@ bool Renderer::Initialize(HWND window, IDirect3DDevice9* device) {
 }
 
 bool Renderer::HandleInputMessage(UINT message_type, WPARAM w_param, LPARAM l_param) {
+	// Close menu when game window loses focus.
+	if (message_type == WM_NCACTIVATE && w_param == 0)
+		this->active = false;
+
 	// Toggle the menu when INSERT is pressed.
 	if (message_type == WM_KEYUP && w_param == VK_INSERT)
 		this->active = !this->active;
