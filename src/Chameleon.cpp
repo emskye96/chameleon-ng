@@ -63,7 +63,7 @@ void WINAPI Chameleon_Init(LPVOID dll_instance) {
 	);
 
 	// Get the client state pointer from IVEngineClient::GetLocalPlayer, allowing us to force full updates.
-	clientstate = *reinterpret_cast<CBaseClientState***>(GetVirtualFunction<uintptr_t>(engine, 12) + 1);
+	clientstate = *reinterpret_cast<CBaseClientState***>(GetVirtualFunction<uintptr_t>(engine, 12) + 0x10);
 	
 	// Initialize the renderer.
 	renderer.Initialize(FindWindowA("Valve001", NULL), d3d9_device);
