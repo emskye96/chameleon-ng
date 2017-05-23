@@ -125,10 +125,61 @@ const bool Configuration::LoadPreset(std::string filename, bool reset = false) {
 	return true;
 }
 
+// Edit configuration valuese.
+const bool Configuration::EditPreset(std::string filename) {
+	// Resolve the relative filename to a full path.
+	std::string output_filename = this->base_folder + "\\" + filename;
+
+	// Open the output configuration file for writing.
+	std::ofstream output_file = std::ofstream(output_filename);
+	
+	if (!output_file.good())
+		return false;
+
+	// Create a JSON object to serialize the configuration.
+	nlohmann::json preset;
+	
+	for (const auto& item: this->item_config) {
+		const EconomyItem_t& item_config = item.second;
+
+		if (!item_config.is_valid)
+			continue;
+
+		std::string item_key = std::to_string(item.first);
+
+		if (item_config.entity_quality != -1)
+			preset["items"][item_key]["entity_quality"] = item_config.entity_quality;
+
+		if (item_config.fallback_seed != -1)
+			preset["items"][item_key]["fallback_seed"] = item_config.fallback_seed;
+
+		if (item_config.fallback_paint_kit != -1)
+			preset["items"][item_key]["fallback_paint_kit"] = item_config.fallback_paint_kit;
+
+		if (item_config.fallback_stattrak != -1)
+			preset["items"][item_key]["fallback_stattrak"] = item_config.fallback_stattrak;
+
+		if (item_config.fallback_wear != -1)
+			preset["items"][item_key]["fallback_wear"] = item_config.fallback_wear;
+
+		if (item_config.item_definition_index != -1)
+			preset["items"][item_key]["item_definition_index"] = item_config.item_definition_index;
+
+		if (strlen(item_config.custom_name) != 0)
+			preset["items"][item_key]["custom_name"] = item_config.custom_name;
+	}
+
+	// Write the contents to disk with pretty formatting.
+	output_file << std::setw(4) << preset << std::endl;
+	output_file.close();
+	
+	return true;
+}
+
 // Save configuration values to a file.
 const bool Configuration::SavePreset(std::string filename) {
 	// Resolve the relative filename to a full path.
-	std::string output_filename = this->base_folder + "\\" + filename;
+	std::string output_filename = this->base_folder + "\\" + filename + ".cfg";
 
 	// Open the output configuration file for writing.
 	std::ofstream output_file = std::ofstream(output_filename);

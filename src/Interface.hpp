@@ -113,7 +113,7 @@ inline void RenderInterface() {
 
 				if (ImGui::Button(std::string("Save##").append(preset).c_str())) {
 					// Overwrite this file with current item settings.
-					config.SavePreset(preset);
+					config.EditPreset(preset);
 				}
 
 				ImGui::SameLine();
