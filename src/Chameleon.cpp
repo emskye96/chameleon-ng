@@ -59,7 +59,7 @@ void WINAPI Chameleon_Init(LPVOID dll_instance) {
 
 	// Scan for the IDirect3DDevice9 pointer in 'shaderapidx9.dll'.
 	IDirect3DDevice9* d3d9_device = **reinterpret_cast<IDirect3DDevice9***>(
-		FindPattern("shaderapidx9.dll", "\xA1\x00\x00\x00\x00\x50\x8B\x08\xFF\x51\x0C", "x????xxxxxx") + 1
+		FindPattern("shaderapidx9.dll", "A1 ? ? ? ? 50 8B 08 FF 51 0C") + 1
 	);
 
 	// Get the client state pointer from IVEngineClient::GetLocalPlayer, allowing us to force full updates.
