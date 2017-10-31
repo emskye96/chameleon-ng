@@ -76,7 +76,7 @@ void __fastcall hkFrameStageNotify(IBaseClientDLL* thisptr, void* edx, ClientFra
 					*weapon->GetEntityQuality() = weapon_config.entity_quality;
 
 				// Apply custom name tag.
-				if (weapon_config.custom_name)
+				if (*weapon_config.custom_name)
 					snprintf(weapon->GetCustomName(), 32, "%s", weapon_config.custom_name);
 
 				// Apply the paint kit.
